@@ -12,6 +12,7 @@ Adding a small comment here as a test for how collaborative edits are made
 ```{r}
 summary(cars)
 ```
+#Time for coffee!!
 
 You can also embed plots, for example:
 
