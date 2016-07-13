@@ -4,17 +4,56 @@ output: html_document
 ---
 
 plan...here we right in markdown
-#harshtags means headers
+##harshtags means headers
 
 ```{r}
-here we write in r
-summary cars
-```
+here we write in rcode
+
 
 You can also embed plots, for example:
-
+# load libraries
 ```{r, echo=FALSE}
-plot(cars)
+library(dplyr)
+library(gapminder)
+library(ggplot2)
+install.packages('ggplot2')
+G <-gapminder%>%
+  filter(year ==2007)%>%
+  mutate(pop_m = pop/1e6)
+```
+#my first plot
+```{r}
+S <-ggplot(G, aes(x = gdpPercap, y = lifeExp)) + geom_point()
+S
+```
+#My second plot
+```{r}
+S2 =S + aes(size = pop_m)
+S2
+S3 = S2 + aes(color= continent)
+S3
+S <- ggplot (g, aes(x = gdpPercap, y = lifeExp))+
+  geom_point()+
+  aes(size = pop_m)+
+  aes(color = continent)+
+  ggtitle('Health and Health of nations for 2007') +
+  xlab('GDP perCapita (USD/year'))+
+  ylab('life Expectancy(years'))+
+  scale_color_discrete('Continent')+
+  scale_size_continuous('Population (M)')
+S
+
+
+```
+#My boxplot
+```{r}
+b <-ggplot(G, aes(x = continent, y = lifeExp))+
+  geom_boxplot()+
+  aes(fill=continent)+
+  theme(legend.position='none')
+b
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```
+
